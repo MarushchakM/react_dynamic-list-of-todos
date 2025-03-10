@@ -70,7 +70,10 @@ export const App: React.FC = () => {
             <h1 className="title">Todos:</h1>
 
             <div className="block">
-              <TodoFilter status={handleStatus} query={handleQuery} />
+              <TodoFilter
+                onStatusChange={handleStatus}
+                onQueryChange={handleQuery}
+              />
             </div>
 
             <div className="block">
@@ -88,7 +91,6 @@ export const App: React.FC = () => {
       </div>
 
       {selectTodo && <TodoModal todo={selectTodo} hideTodo={handleHideTodo} />}
-      {/* <TodoModal /> */}
     </>
   );
 };

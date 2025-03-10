@@ -1,23 +1,26 @@
 import React, { useState } from 'react';
 
 type Props = {
-  status: (value: string) => void;
-  query: (value: string) => void;
+  onStatusChange: (value: string) => void;
+  onQueryChange: (value: string) => void;
 };
 
-export const TodoFilter: React.FC<Props> = ({ status, query }) => {
+export const TodoFilter: React.FC<Props> = ({
+  onStatusChange,
+  onQueryChange,
+}) => {
   const [saveQuery, setSaveQuery] = useState('');
 
   const handleQuery = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = event.target.value;
 
     setSaveQuery(value);
-    query(value);
+    onQueryChange(value);
   };
 
   const handleDeleteQuery = () => {
     setSaveQuery('');
-    query('');
+    onQueryChange('');
   };
 
   return (
@@ -27,7 +30,7 @@ export const TodoFilter: React.FC<Props> = ({ status, query }) => {
           <select
             data-cy="statusSelect"
             onChange={event => {
-              status(event.target.value);
+              onStatusChange(event.target.value);
             }}
           >
             <option value="all">All</option>
